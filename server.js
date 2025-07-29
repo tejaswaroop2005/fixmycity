@@ -96,21 +96,24 @@ app.post("/api/register", async (req, res) => {
   }
 })
 
-// User login
+
 app.post("/api/login", async (req, res) => {
   try {
-    const { username, password } = req.body
+    
+    const { email, password } = req.body;
 
-    // Find user
-    const user = await User.findOne({ username })
+   
+    const user = await User.findOne({ email });
+   
+
     if (!user) {
-      return res.status(400).json({ error: "Invalid credentials" })
+      return res.status(400).json({ error: "Invalid credentials" });
     }
 
-    // Check password
-    const isValidPassword = await bcrypt.compare(password, user.password)
+   
+    const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
-      return res.status(400).json({ error: "Invalid credentials" })
+      return res.status(400).json({ error: "Invalid credentials" });
     }
 
     res.json({
@@ -121,11 +124,11 @@ app.post("/api/login", async (req, res) => {
         email: user.email,
         isAdmin: user.isAdmin,
       },
-    })
+    });
   } catch (error) {
-    res.status(500).json({ error: "Login failed" })
+    res.status(500).json({ error: "Login failed" });
   }
-})
+});
 
 // Submit complaint
 app.post("/api/complaints", upload.single("photo"), async (req, res) => {
