@@ -36,47 +36,48 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Handle admin login form submission
-        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+              <script>
+    // Handle admin login form submission
+    document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // --- THIS IS THE CORRECTED PART ---
+        const email = document.getElementById('email').value; // Changed from 'username' to 'email'
+        const password = document.getElementById('password').value;
+        const messageDiv = document.getElementById('message');
+        
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password }) // Changed from 'username' to 'email'
+            });
+            // --- END OF CORRECTION ---
             
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const messageDiv = document.getElementById('message');
+            const data = await response.json();
             
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ username, password })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    if (data.user.isAdmin) {
-                        // Store admin data in localStorage
-                        localStorage.setItem('admin', JSON.stringify(data.user));
-                        messageDiv.innerHTML = '<p class="success">Admin login successful! Redirecting...</p>';
-                        
-                        // Redirect to admin dashboard
-                        setTimeout(() => {
-                            window.location.href = 'admin-dashboard.html';
-                        }, 1000);
-                    } else {
-                        messageDiv.innerHTML = '<p class="error">Access denied. Admin privileges required.</p>';
-                    }
+            if (response.ok) {
+                if (data.user.isAdmin) {
+                    // Store admin data in localStorage
+                    localStorage.setItem('admin', JSON.stringify(data.user));
+                    messageDiv.innerHTML = '<p class="success">Admin login successful! Redirecting...</p>';
+                    
+                    // Redirect to admin dashboard
+                    setTimeout(() => {
+                        window.location.href = 'admin-dashboard.html';
+                    }, 1000);
                 } else {
-                    messageDiv.innerHTML = `<p class="error">${data.error}</p>`;
+                    messageDiv.innerHTML = '<p class="error">Access denied. Admin privileges required.</p>';
                 }
-            } catch (error) {
-                messageDiv.innerHTML = '<p class="error">Login failed. Please try again.</p>';
+            } else {
+                messageDiv.innerHTML = `<p class="error">${data.error}</p>`;
             }
-        });
-    </script>
+        } catch (error) {
+            messageDiv.innerHTML = '<p class="error">Login failed. Please try again.</p>';
+        }
+    });
+</script>
 </body>
 </html>
