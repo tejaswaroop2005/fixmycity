@@ -45,7 +45,6 @@
     </div>
 
     <script>
-        // Handle registration form submission
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -67,7 +66,7 @@
                 
                 if (response.ok) {
                     messageDiv.innerHTML = '<p class="success">Registration successful! You can now login.</p>';
-                    // Clear form
+                   
                     document.getElementById('registerForm').reset();
                 } else {
                     messageDiv.innerHTML = `<p class="error">${data.error}</p>`;
