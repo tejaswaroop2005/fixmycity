@@ -1,4 +1,4 @@
-// 1. Load environment variables from .env file
+
 require("dotenv").config()
 
 const express = require("express")
@@ -9,7 +9,7 @@ const path = require("path")
 const fs = require("fs")
 
 const app = express()
-// Use the PORT from .env, or default to 3000
+
 const PORT = process.env.PORT || 3000
 
 // Middleware
@@ -17,12 +17,12 @@ app.use(express.json())
 app.use(express.static("public"))
 app.use("/uploads", express.static("uploads"))
 
-// Create uploads directory if it doesn't exist
+
 if (!fs.existsSync("uploads")) {
   fs.mkdirSync("uploads")
 }
 
-// File upload configuration
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "uploads/")
@@ -33,7 +33,7 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 
-// 2. Use the MONGO_URI from the .env file
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -42,7 +42,7 @@ mongoose
   .then(() => console.log("MongoDB connected successfully."))
   .catch((err) => console.error("MongoDB connection error:", err))
 
-// User Schema
+
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
@@ -52,13 +52,13 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema)
 
-// Complaint Schema
+
 const complaintSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   location: { type: String, required: true },
-  photo: { type: String }, // file path
-  status: { type: String, default: "pending" }, // pending, in-progress, resolved
+  photo: { type: String }, 
+  status: { type: String, default: "pending" }, 
   remark: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
   createdAt: { type: Date, default: Date.now },
@@ -66,23 +66,21 @@ const complaintSchema = new mongoose.Schema({
 
 const Complaint = mongoose.model("Complaint", complaintSchema)
 
-// --- Routes (No changes needed here) ---
 
-// User registration
 app.post("/api/register", async (req, res) => {
   try {
     const { username, email, password } = req.body
 
-    // Check if user already exists
+   
     const existingUser = await User.findOne({ $or: [{ email }, { username }] })
     if (existingUser) {
       return res.status(400).json({ error: "User already exists" })
     }
 
-    // Hash password
+   
     const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Create new user
+    
     const user = new User({
       username,
       email,
@@ -130,7 +128,7 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Submit complaint
+
 app.post("/api/complaints", upload.single("photo"), async (req, res) => {
   try {
     const { title, description, location, userId } = req.body
@@ -150,7 +148,7 @@ app.post("/api/complaints", upload.single("photo"), async (req, res) => {
   }
 })
 
-// Get user's complaints
+
 app.get("/api/complaints/user/:userId", async (req, res) => {
   try {
     const complaints = await Complaint.find({ userId: req.params.userId }).sort({ createdAt: -1 })
@@ -160,7 +158,7 @@ app.get("/api/complaints/user/:userId", async (req, res) => {
   }
 })
 
-// Get all complaints (admin only)
+
 app.get("/api/complaints", async (req, res) => {
   try {
     const complaints = await Complaint.find().populate("userId", "username email").sort({ createdAt: -1 })
@@ -170,7 +168,7 @@ app.get("/api/complaints", async (req, res) => {
   }
 })
 
-// Update complaint status (admin only)
+
 app.put("/api/complaints/:id", async (req, res) => {
   try {
     const { status, remark } = req.body
