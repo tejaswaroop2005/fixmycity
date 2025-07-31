@@ -28,7 +28,7 @@
     <script>
         let currentAdmin = null;
 
-        // Check if admin is logged in
+     
         function checkAuth() {
             const adminData = localStorage.getItem('admin');
             if (!adminData) {
@@ -44,17 +44,17 @@
             
             document.getElementById('welcomeAdmin').textContent = `Welcome, Admin ${currentAdmin.username}!`;
             
-            // Load all complaints
+           
             loadAllComplaints();
         }
 
-        // Logout function
+        
         function logout() {
             localStorage.removeItem('admin');
             window.location.href = 'index.html';
         }
 
-        // Load all complaints
+     
         async function loadAllComplaints() {
             try {
                 const response = await fetch('/api/complaints');
@@ -104,12 +104,12 @@
             }
         }
 
-        // Update complaint status and/or remark
+        
         async function updateComplaint(complaintId, newStatus, remarkInputId) {
             const remarkInput = document.getElementById(remarkInputId);
             const remark = remarkInput.value;
             
-            // If newStatus is null, we're only updating the remark
+           
             const updateData = {};
             if (newStatus) {
                 updateData.status = newStatus;
@@ -130,7 +130,7 @@
                 const data = await response.json();
                 
                 if (response.ok) {
-                    // Reload complaints to show updated status
+                  
                     loadAllComplaints();
                 } else {
                     alert('Failed to update complaint: ' + data.error);
