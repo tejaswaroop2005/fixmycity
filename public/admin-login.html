@@ -37,12 +37,11 @@
         </div>
     </div>
               <script>
-    // Handle admin login form submission
+   
     document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         
-        // --- THIS IS THE CORRECTED PART ---
-        const email = document.getElementById('email').value; // Changed from 'username' to 'email'
+        const email = document.getElementById('email').value; 
         const password = document.getElementById('password').value;
         const messageDiv = document.getElementById('message');
         
@@ -52,19 +51,19 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ email, password }) // Changed from 'username' to 'email'
+                body: JSON.stringify({ email, password }) 
             });
-            // --- END OF CORRECTION ---
+          
             
             const data = await response.json();
             
             if (response.ok) {
                 if (data.user.isAdmin) {
-                    // Store admin data in localStorage
+                   
                     localStorage.setItem('admin', JSON.stringify(data.user));
                     messageDiv.innerHTML = '<p class="success">Admin login successful! Redirecting...</p>';
                     
-                    // Redirect to admin dashboard
+                  
                     setTimeout(() => {
                         window.location.href = 'admin-dashboard.html';
                     }, 1000);
