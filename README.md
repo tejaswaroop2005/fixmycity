@@ -99,7 +99,7 @@ FixMyCity/
     ├── dashboard.html    # Citizen dashboard
     ├── admin-login.html  # Admin login
     ├── admin-dashboard.html # Admin dashboard
-    └── style.css         # Basic styling
+    └── style.css ,stylee.css        # Basic styling
 \`\`\`
 
 ## How to Use
