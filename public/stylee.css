@@ -1,4 +1,4 @@
-/* General Body Styles - Matching provided 'current styling' */
+
 * {
     margin: 0;
     padding: 0;
@@ -6,42 +6,42 @@
 }
 
 body {
-    font-family: Arial, sans-serif; /* Matching font */
+    font-family: Arial, sans-serif; 
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4; /* Matching body background */
+    background-color: #f4f4f4; 
 }
 
-/* Container Styles - Matching provided 'current styling' */
+
 .container {
-    max-width: 800px; /* Matching max-width */
+    max-width: 800px; 
     margin: 0 auto;
     padding: 20px;
-    background-color: #f4f4f4; /* Changed container background to body color */
+    background-color: #f4f4f4; 
     min-height: 100vh;
-    display: flex; /* Use flexbox for sticky footer */
-    flex-direction: column; /* Stack children vertically */
+    display: flex; 
+    flex-direction: column; 
 }
 
 main {
-    flex-grow: 1; /* Allows main content to take available space */
+    flex-grow: 1; 
 }
 
-/* Header Styles - Matching provided 'current styling' */
+
 header {
     text-align: center;
     margin-bottom: 30px;
     padding: 20px 0;
-    border-bottom: 2px solid #007bff; /* Matching border color */
-    background-color: white; /* Make header its own block */
-    border-radius: 8px 8px 0 0; /* Rounded top corners */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for block effect */
-    margin-top: 20px; /* Space from top of container */
+    border-bottom: 2px solid #007bff; 
+    background-color: white; 
+    border-radius: 8px 8px 0 0; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    margin-top: 20px; 
 }
 
 header h1 {
-    color: #007bff; /* Matching primary color */
-    font-size: 2.5em; /* Matching font size */
+    color: #007bff; 
+    font-size: 2.5em; 
     margin-bottom: 10px;
 }
 
@@ -51,19 +51,19 @@ header p {
     opacity: 0.9;
 }
 
-/* Welcome Section - NOW A DISTINCT BLOCK */
+
 .welcome-section {
-    background-color: white; /* White background for the block */
-    padding: 40px; /* Generous padding */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Clear shadow for block effect */
+    background-color: white; 
+    padding: 40px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
     text-align: center;
-    margin-bottom: 30px; /* Space below the block */
-    border: 1px solid #ddd; /* Subtle border */
+    margin-bottom: 30px; 
+    border: 1px solid #ddd; 
 }
 
 .welcome-section h2 {
-    color: #007bff; /* Use primary blue for heading */
+    color: #007bff; 
     font-size: 2.2em;
     margin-bottom: 20px;
 }
@@ -75,19 +75,19 @@ header p {
     margin: 0 auto 30px auto;
 }
 
-/* Auth Buttons */
+
 .auth-buttons {
     margin: 30px 0;
-    display: flex; /* Use flexbox to center buttons */
+    display: flex; 
     justify-content: center;
-    gap: 20px; /* Space between buttons */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; 
+    flex-wrap: wrap; 
 }
 
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    /* margin: 0 10px; -- Removed as flex gap handles spacing */
+   
     background-color: #007bff;
     color: white;
     text-decoration: none;
@@ -110,19 +110,19 @@ header p {
     background-color: #c82333;
 }
 
-/* Features Section - NOW A DISTINCT BLOCK */
+
 .features {
-    background-color: white; /* White background for the block */
-    padding: 30px; /* Padding for the block */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); /* Shadow for block effect */
-    margin-top: 20px; /* Space above the block */
-    margin-bottom: 30px; /* Space below the block */
-    border: 1px solid #ddd; /* Subtle border */
+    background-color: white; 
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); 
+    margin-top: 20px; 
+    margin-bottom: 30px; 
+    border: 1px solid #ddd; 
 }
 
 .features h3 {
-    color: #007bff; /* Use primary blue for heading */
+    color: #007bff;
     font-size: 1.8em;
     margin-bottom: 25px;
     text-align: center;
@@ -136,37 +136,37 @@ header p {
 }
 
 .features li {
-    padding: 12px 15px; /* Slightly more padding for list items */
+    padding: 12px 15px; 
     border-bottom: 1px solid #eee;
     font-size: 1.05em;
     color: #444;
     text-align: left;
-    background-color: #fcfcfc; /* Very subtle background for list item */
-    margin-bottom: 8px; /* Space between list items */
-    border-radius: 4px; /* Slightly rounded list items */
+    background-color: #fcfcfc; 
+    margin-bottom: 8px;
+    border-radius: 4px;
 }
 
 .features li:last-child {
-    border-bottom: none; /* No border for the last item */
+    border-bottom: none; 
 }
 
 .features li:before {
     content: "✓ ";
     color: #007bff;
     font-weight: bold;
-    margin-right: 8px; /* Increased space after checkmark */
+    margin-right: 8px; 
 }
 
-/* Footer Styles - Matching provided 'current styling' */
+
 footer {
     text-align: center;
-    margin-top: auto; /* Pushes footer to the bottom */
-    padding: 20px; /* Adjusted padding */
+    margin-top: auto; 
+    padding: 20px; 
     border-top: 1px solid #ddd;
     color: #666;
-    background-color: white; /* Make footer its own block */
-    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.05); /* Subtle shadow for block effect */
+    background-color: white; 
+    border-radius: 0 0 8px 8px; 
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05); 
 }
 
 footer p {
@@ -175,8 +175,6 @@ footer p {
     opacity: 0.8;
 }
 
-/* --- Styles for elements NOT present in your HTML, but included in your 'current styling' --- */
-/* These are provided so you can use them if you extend your HTML */
 
 .form-container {
     max-width: 400px;
@@ -185,7 +183,7 @@ footer p {
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Added shadow for consistency */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
 }
 
 .form-group {
@@ -219,7 +217,7 @@ textarea {
     padding: 20px;
     margin-bottom: 20px;
     background-color: #f9f9f9;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Added shadow for consistency */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); 
 }
 
 .complaint-header {
@@ -295,10 +293,10 @@ textarea {
     text-decoration: underline;
 }
 
-/* Responsive adjustments for smaller screens */
+
 @media (max-width: 600px) {
     .welcome-section, .features {
-        padding: 20px; /* Reduce padding on smaller screens */
+        padding: 20px; 
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -310,14 +308,14 @@ textarea {
     }
 
     .btn {
-        width: 90%; /* Make buttons take more width */
+        width: 90%; 
         max-width: 300px;
     }
 
     header, footer {
         margin-left: 10px;
         margin-right: 10px;
-        border-radius: 8px; /* Apply border radius to headers/footers as well */
+        border-radius: 8px; 
     }
 }
 
