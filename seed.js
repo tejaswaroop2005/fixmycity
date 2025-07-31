@@ -1,10 +1,10 @@
-// 1. Load environment variables from .env file
+
 require("dotenv").config()
 
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 
-// Note: In a real app, you would import models from separate files
+
 const User = mongoose.model("User", new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
@@ -26,19 +26,19 @@ const Complaint = mongoose.model("Complaint", new mongoose.Schema({
 
 async function seedDatabase() {
   try {
-    // 2. Connect inside the async function using the .env variable
+    
     await mongoose.connect(process.env.MONGO_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
     console.log("MongoDB connected for seeding...")
 
-    // Clear existing data
+  
     await User.deleteMany({})
     await Complaint.deleteMany({})
     console.log("Cleared existing data...")
 
-    // Create sample users
+   
     const hashedPassword = await bcrypt.hash("password123", 10)
 
     const users = await User.insertMany([
@@ -63,7 +63,7 @@ async function seedDatabase() {
     ])
     console.log("Created sample users...")
 
-    // Create sample complaints
+   
     await Complaint.insertMany([
       {
         title: "Large pothole on Main Street",
@@ -87,8 +87,7 @@ async function seedDatabase() {
   } catch (error) {
     console.error("❌ Error seeding database:", error)
   } finally {
-    // 3. Close the connection in a 'finally' block
-    // This ensures the connection is closed whether the script succeeds or fails
+    
     await mongoose.connection.close()
     console.log("MongoDB connection closed.")
   }
