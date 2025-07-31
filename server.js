@@ -1,21 +1,19 @@
 
 require("dotenv").config()
-
 const express = require("express")
 const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const multer = require("multer")
 const path = require("path")
 const fs = require("fs")
-
 const app = express()
 
 const PORT = process.env.PORT || 3000
 
-// Middleware
-app.use(express.json())
-app.use(express.static("public"))
-app.use("/uploads", express.static("uploads"))
+
+    app.use(express.json())
+     app.use(express.static("public"))
+    app.use("/uploads", express.static("uploads"))
 
 
 if (!fs.existsSync("uploads")) {
@@ -31,7 +29,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + "-" + file.originalname)
   },
 })
-const upload = multer({ storage: storage })
+    const upload = multer({ storage: storage })
 
 
 mongoose
@@ -44,10 +42,10 @@ mongoose
 
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  isAdmin: { type: Boolean, default: false },
+      username: { type: String, required: true, unique: true },
+     email: { type: String, required: true, unique: true },
+      password: { type: String, required: true },
+      isAdmin: { type: Boolean, default: false },
 })
 
 const User = mongoose.model("User", userSchema)
@@ -55,13 +53,13 @@ const User = mongoose.model("User", userSchema)
 
 const complaintSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
-  location: { type: String, required: true },
-  photo: { type: String }, 
-  status: { type: String, default: "pending" }, 
+    description: { type: String, required: true },
+    location: { type: String, required: true },
+     photo: { type: String }, 
+    status: { type: String, default: "pending" }, 
   remark: { type: String },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  createdAt: { type: Date, default: Date.now },
+     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+      createdAt: { type: Date, default: Date.now },
 })
 
 const Complaint = mongoose.model("Complaint", complaintSchema)
@@ -83,7 +81,7 @@ app.post("/api/register", async (req, res) => {
     
     const user = new User({
       username,
-      email,
+    email,
       password: hashedPassword,
     })
 
@@ -105,7 +103,7 @@ app.post("/api/login", async (req, res) => {
    
 
     if (!user) {
-      return res.status(400).json({ error: "Invalid credentials" });
+         return res.status(400).json({ error: "Invalid credentials" });
     }
 
    
@@ -117,10 +115,10 @@ app.post("/api/login", async (req, res) => {
     res.json({
       message: "Login successful",
       user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        isAdmin: user.isAdmin,
+            id: user._id,
+               username: user.username,
+             email: user.email,
+             isAdmin: user.isAdmin,
       },
     });
   } catch (error) {
@@ -179,10 +177,6 @@ app.put("/api/complaints/:id", async (req, res) => {
     res.status(500).json({ error: "Failed to update complaint" })
   }
 })
-
-// --- End of Routes ---
-
-// Start server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`)
 })
