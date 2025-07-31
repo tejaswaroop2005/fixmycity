@@ -42,11 +42,11 @@
     </div>
 
     <script>
-        // Handle login form submission
+       
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            // Change starts here
+           
             const email = document.getElementById('email').value;
             // Change ends here
             const password = document.getElementById('password').value;
@@ -58,9 +58,9 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    // Change starts here
+                 
                     body: JSON.stringify({ email, password })
-                    // Change ends here
+                 
                 });
                 
                 const data = await response.json();
