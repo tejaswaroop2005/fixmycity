@@ -1,11 +1,11 @@
 
 require("dotenv").config()
-const express = require("express")
-const mongoose = require("mongoose")
-const bcrypt = require("bcrypt")
-const multer = require("multer")
-const path = require("path")
-const fs = require("fs")
+const express=require("express")
+const mongoose=require("mongoose")
+const bcrypt=require("bcrypt")
+const multer=require("multer")
+const path=require("path")
+const fs=require("fs")
 const app = express()
 
 const PORT = process.env.PORT || 3000
